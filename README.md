@@ -1,9 +1,16 @@
-# Clone from https://github.com/TanShilongMario/PromptFill 簡單轉為繁中
-# Prompt Fill (提示詞填空器)
+# Prompt Fill (提示詞填空器) clone from https://github.com/TanShilongMario/PromptFill 簡單轉為繁中
+
 一個專為 AI 繪畫（GPT、Nano Banana 等）設計的**結構化提示詞生成工具**。透過視覺化的"填空"互動方式，幫助使用者快速構建、管理和迭代複雜的 Prompt。
 
-<img width="1343" height="612" alt="image@1x-2" src="[https://github.com/user-attachments/assets/7c3d969b-7f63-46fc-a16a-e3074da6c692](https://github.com/user-attachments/assets/7c3d969b-7f63-46fc-a16a-e3074da6c692)" />
-<img width="1343" height="620" alt="1231333" src="[https://github.com/user-attachments/assets/08c90a9f-7b1e-4b3d-84fc-650bccfd1d2b](https://github.com/user-attachments/assets/08c90a9f-7b1e-4b3d-84fc-650bccfd1d2b)" />
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Version](https://img.shields.io/badge/Version-0.5.1-orange.svg)
+![React](https://img.shields.io/badge/React-18.x-61DAFB.svg)
+![Vite](https://img.shields.io/badge/Vite-5.x-646CFF.svg)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC.svg)
+
+<img width="1343" height="612" alt="image@1x-2" src="https://github.com/user-attachments/assets/7c3d969b-7f63-46fc-a16a-e3074da6c692" />
+<img width="1343" height="620" alt="1231333" src="https://github.com/user-attachments/assets/08c90a9f-7b1e-4b3d-84fc-650bccfd1d2b" />
+
 
 ## 📝 寫在前面
 
