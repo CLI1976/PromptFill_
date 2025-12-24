@@ -571,8 +571,6 @@ const App = () => {
   const [activeTemplateId, setActiveTemplateId] = useStickyState("tpl_default", "app_active_template_id_v4");
   
   const [lastAppliedDataVersion, setLastAppliedDataVersion] = useStickyState("", "app_data_version_v1");
-  const [showDataUpdateNotice, setShowDataUpdateNotice] = useState(false);
-  const [showAppUpdateNotice, setShowAppUpdateNotice] = useState(false);
   
   // UI State
   const [bankSidebarWidth, setBankSidebarWidth] = useStickyState(420, "app_bank_sidebar_width_v1"); // Default width increased to 420px for 2-column layout
@@ -648,50 +646,6 @@ const App = () => {
   const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
   const [randomSeed, setRandomSeed] = useState(Date.now()); // 用于随机排序的种子
   
-  // 检查系统模版更新
-  // 检测数据版本更新 (模板与词库)
-  useEffect(() => {
-    if (SYSTEM_DATA_VERSION && lastAppliedDataVersion !== SYSTEM_DATA_VERSION) {
-      // 检查是否有存储的数据。如果是第一次使用（无数据），直接静默更新版本号
-      const hasTemplates = localStorage.getItem("app_templates_v10");
-      const hasBanks = localStorage.getItem("app_banks_v9");
-      
-      if (hasTemplates || hasBanks) {
-        setShowDataUpdateNotice(true);
-      } else {
-        setLastAppliedDataVersion(SYSTEM_DATA_VERSION);
-      }
-    }
-  }, [lastAppliedDataVersion]);
-
-  // 检查应用代码版本更新与数据版本更新
-  useEffect(() => {
-    const checkUpdates = async () => {
-      try {
-        const response = await fetch('/version.json?t=' + Date.now());
-        if (response.ok) {
-          const data = await response.json();
-          
-          // 检查应用版本更新 - 使用代码内常量 APP_VERSION 进行比对
-          if (data.appVersion && data.appVersion !== APP_VERSION) {
-            setShowAppUpdateNotice(true);
-          }
-          
-          // 检查数据版本更新（模板和词库）
-          if (data.dataVersion && data.dataVersion !== lastAppliedDataVersion) {
-            setShowDataUpdateNotice(true);
-          }
-        }
-      } catch (e) {
-        // 静默失败
-      }
-    };
-    
-    checkUpdates();
-    const timer = setInterval(checkUpdates, 5 * 60 * 1000); // 5分钟检查一次
-    
-    return () => clearInterval(timer);
-  }, [lastAppliedDataVersion]); // 移除 lastAppliedAppVersion 依赖
 
   // History State for Undo/Redo
   const [historyPast, setHistoryPast] = useState([]);
