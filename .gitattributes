@@ -1,0 +1,8 @@
+# 强制脚本文件使用正确的换行符
+*.command text eol=lf
+*.sh text eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# 其他文件保持默认行为
+* text=auto
