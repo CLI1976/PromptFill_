@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Scrollbar Styles */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  margin: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(251, 146, 60, 0.4);
+  border-color: rgba(251, 146, 60, 0.3);
+  box-shadow: 0 0 10px rgba(251, 146, 60, 0.3);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:active {
+  background: rgba(251, 146, 60, 0.6);
+  border-color: rgba(251, 146, 60, 0.5);
+}
+
+/* Firefox Scrollbar */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1);
+}
+
+/* Poster Mode Scrollbar - Extra Elegant */
+.poster-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.poster-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  margin: 8px 0;
+}
+
+.poster-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg, 
+    rgba(255, 255, 255, 0.25) 0%, 
+    rgba(251, 146, 60, 0.25) 100%
+  );
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.poster-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg, 
+    rgba(251, 146, 60, 0.4) 0%, 
+    rgba(251, 146, 60, 0.6) 100%
+  );
+  border-color: rgba(251, 146, 60, 0.3);
+  box-shadow: 0 0 12px rgba(251, 146, 60, 0.4);
+  transform: scaleX(1.2);
+}
+
+.poster-scrollbar::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(
+    180deg, 
+    rgba(251, 146, 60, 0.6) 0%, 
+    rgba(251, 146, 60, 0.8) 100%
+  );
+}
+
+/* Firefox */
+.poster-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(251, 146, 60, 0.3) rgba(255, 255, 255, 0.05);
+}
+
+/* Animated Slogan Keyframes */
+@keyframes fadeInSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeOutSlideDown {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.95);
+  }
+}
+
+.animate-in {
+  animation: fadeInSlideUp 0.5s ease-out forwards;
+}
+
+.animate-out {
+  animation: fadeOutSlideDown 0.3s ease-in forwards;
+}
+
+/* Pulse glow effect for the orange pill */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: inset 0px 2px 4px 0px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(251, 146, 60, 0.4);
+  }
+  50% {
+    box-shadow: inset 0px 2px 4px 0px rgba(255, 255, 255, 0.3), 0 6px 20px rgba(251, 146, 60, 0.6);
+  }
+}
+
+/* Pulse glow effect for the blue pill */
+@keyframes pulseGlowBlue {
+  0%, 100% {
+    box-shadow: inset 0px 2px 4px 0px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(96, 165, 250, 0.4);
+  }
+  50% {
+    box-shadow: inset 0px 2px 4px 0px rgba(255, 255, 255, 0.3), 0 6px 20px rgba(96, 165, 250, 0.6);
+  }
+}
+
+
+/* White Theme Scrollbar for Dark Backgrounds */
+.custom-scrollbar-white::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar-white::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar-white::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+}
+
+.custom-scrollbar-white::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Mobile Safe Area Padding */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 20px);
+}
+
+/* iOS smooth scrolling for content area */
+.content-scroll-area {
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}
+
+/* Performance Utilities */
+.will-change-scroll {
+  will-change: scroll-position;
+}
+
+.will-change-transform {
+  will-change: transform;
+}
+
+/* 高级网格渐变背景 - 性能更优，无撕裂 */
+.mesh-gradient-bg {
+  background-color: #f8fafc;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(251, 146, 60, 0.08) 0px, transparent 50%),
+    radial-gradient(at 50% 0%, rgba(59, 130, 246, 0.05) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(251, 146, 60, 0.05) 0px, transparent 50%),
+    radial-gradient(at 95% 50%, rgba(251, 146, 60, 0.08) 0px, transparent 50%),
+    radial-gradient(at 5% 50%, rgba(59, 130, 246, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.05) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(251, 146, 60, 0.05) 0px, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* 优化 Slogan 药丸动画，减少频繁重绘产生的撕裂感 */
+@keyframes pillFadeIn {
+  from { opacity: 0.6; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.pill-animate {
+  animation: pillFadeIn 0.4s ease-out forwards;
+}
