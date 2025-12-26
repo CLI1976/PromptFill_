@@ -1,20 +1,20 @@
 /**
  * @typedef {Object} TemplateConfig
- * @property {string} id - 唯一識別符，建議使用 'tpl_' 前綴
- * @property {string|Object} name - 模板顯示名稱，支持雙語對象 {cn: string, en: string} 或單語言字符串
- * @property {string|Object} content - 模板內容，支持 markdown 和 {{variable}} 變量，支持雙語對象 {cn: string, en: string} 或單語言字符串
- * @property {string} imageUrl - 預覽縮略圖 URL
- * @property {string[]} [imageUrls] - 多圖預覽數組
- * @property {Object.<string, string|Object>} selections - 預設選中的變量值 map，支持雙語對象或字符串
- * @property {string[]} tags - 模板標籤數組，可選值：建築、人物、攝影、產品、圖表、卡通、寵物、遊戲、創意
+ * @property {string} id - 唯一識別碼，建議使用 'tpl_' 前綴
+ * @property {string|Object} name - 模板顯示名稱，支援雙語物件 {cn: string, en: string} 或單語言字串
+ * @property {string|Object} content - 模板內容，支援 markdown 和 {{variable}} 變數，支援雙語物件 {cn: string, en: string} 或單語言字串
+ * @property {string} imageUrl - 預覽縮圖 URL
+ * @property {string[]} [imageUrls] - 多圖預覽陣列
+ * @property {Object.<string, string|Object>} selections - 預設選中的變數值 map，支援雙語物件或字串
+ * @property {string[]} tags - 模板標籤陣列，可選值：建築、人物、攝影、產品、圖表、卡通、寵物、遊戲、創意
  * @property {string|string[]} language - 模板語言，可選值：
- * - 'cn' - 僅支持中文
- * - 'en' - 僅支持英文
- * - ['cn', 'en'] - 支持雙語（默認值）
+ * - 'cn' - 僅支援中文
+ * - 'en' - 僅支援英文
+ * - ['cn', 'en'] - 支援雙語（預設值）
  * * @example 雙語模板
  * {
  * id: "tpl_example",
- * name: { cn: "示例模板", en: "Example Template" },
+ * name: { cn: "範例模板", en: "Example Template" },
  * content: { cn: "中文內容...", en: "English content..." },
  * language: ["cn", "en"]
  * }
@@ -30,19 +30,19 @@
 /**
  * 模板系統版本號，每次更新 templates.js 或 banks.js 時請更新此版本號
  */
-export const SYSTEM_DATA_VERSION = "0.7.1";
+export const SYSTEM_DATA_VERSION = "0.7.2";
 
 export const DEFAULT_TEMPLATE_CONTENT = {
   cn: `### Role (角色設定)
-你是一位頂尖的 {{role}}，擅長製作詳盡的角色設定圖（Character Sheet）。你具備“像素級拆解”的能力，能夠透視角色的穿著層級、捕捉微表情變化，並將與其相關的物品進行具象化還原。你特別擅長通過 {{subject}} 的私密物品、隨身物件和生活細節來側面豐滿人物性格與背景故事。
+你是一位頂尖的 {{role}}，擅長製作詳盡的角色設定圖（Character Sheet）。你具備「像素級拆解」的能力，能夠透視角色的穿著層級、捕捉微表情變化，並將與其相關的物品進行具象化還原。你特別擅長透過 {{subject}} 的私密物品、隨身物件和生活細節來側面豐滿人物性格與背景故事。
 
 ### Task (任務目標)
-根據用戶上傳或描述的主體形象，生成一張**“全景式角色深度概念分解圖”**。該圖片必須包含 {{layout_focus}}，並在其周圍環繞展示該人物的服裝分層、不同表情、核心道具、材質特寫，以及極具生活氣息的私密與隨身物品展示。
+根據使用者上傳或描述的主體形象，生成一張**「全景式角色深度概念分解圖」**。該圖片必須包含 {{layout_focus}}，並在其周圍環繞展示該人物的服裝分層、不同表情、核心道具、材質特寫，以及極具生活氣息的私密與隨身物品展示。
 
 ### Visual Guidelines (視覺規範)
 **1. 構圖佈局 (Layout):**
 - **中心位 (Center):** 放置角色的 {{layout_focus}}，作為視覺錨點。
-- **環繞位 (Surroundings):** 在中心人物四週空白處，有序排列拆解後的元素。
+- **環繞位 (Surroundings):** 在中心人物四周空白處，有序排列拆解後的元素。
 - **視覺引導 (Connectors):** 使用{{connectors}}，將周邊的拆解物品與中心人物的對應部位或所屬區域連接起來。
 
 **2. 拆解內容 (Deconstruction Details):**
@@ -54,12 +54,12 @@ export const DEFAULT_TEMPLATE_CONTENT = {
 - **特殊視角:** 繪製從某種特殊場景下拍攝的特殊視角，例如：{{special_view}}
 
 - **關聯物品 (Related Items):**
- - **隨身包袋與內容物:** 繪製 {{bag_content}}，並將其“打開”，展示散落在旁的物品。
+ - **隨身包袋與內容物:** 繪製 {{bag_content}}，並將其「打開」，展示散落在旁的物品。
  - **美妝與護理:** 展示 {{cosmetics}}。
  - **私密生活物件:** 具象化角色隱藏面的物品。根據角色性格可能包括： {{private_items}}，需以一種設計圖的客觀視角呈現。
 
 **3.風格與註釋 (Style & Annotations):**
-- **畫風:** {{art_style}}，線條乾淨利落。
+- **畫風:** {{art_style}}，線條乾淨俐落。
 - **背景:** {{background_style}}，營造設計手稿的氛圍。
 - **文字說明:** 在每個拆解元素旁模擬手寫註釋，簡要說明材質或品牌/型號暗示。
 
@@ -68,7 +68,7 @@ export const DEFAULT_TEMPLATE_CONTENT = {
 2. 提取可拆解的一級元素（外套、鞋子、大表情）。
 3. 腦補並設計二級深度元素（她內衣穿什麼風格？包裡裝什麼？獨處時用什麼？）。
 4. 生成一張包含所有這些元素的組合圖，確保透視準確，光影統一，註釋清晰。
-5. 使用中文，高清輸出。`,
+5. 使用中文，高畫質輸出。`,
   en: `### Role
 You are a top-tier {{role}}, specializing in creating detailed Character Sheets. You possess the ability of "pixel-level deconstruction," capable of seeing through the layering of characters' outfits, capturing subtle facial expressions, and restoring related items into concrete visuals. You particularly excel at enriching character personalities and background stories through {{subject}}'s private items, personal belongings, and daily life details.
 
@@ -120,7 +120,7 @@ export const TEMPLATE_PHOTO_GRID = {
 3. {{grid_pose}}，鏡頭參數為 {{lens_param}}，捕捉細膩的情感表達；
 4. {{grid_pose}}，鏡頭參數為 {{lens_param}}，利用景深營造層次感；
 5. {{grid_pose}}，鏡頭參數為 {{lens_param}}，突出動態瞬間的生動性；
-6. {{grid_pose}}，鏡頭參數為 {{lens_param}}，通過前景虛化增強視覺焦點；
+6. {{grid_pose}}，鏡頭參數為 {{lens_param}}，透過前景虛化增強視覺焦點；
 7. {{grid_pose}}，鏡頭參數為 {{lens_param}}，展現優雅的姿態和放鬆的狀態；
 8. {{grid_pose}}，鏡頭參數為 {{lens_param}}，捕捉自然光線下的表情變化；
 9. {{grid_pose}}，鏡頭參數為 {{lens_param}}，微距特寫展現面部細節和質感。
@@ -159,7 +159,7 @@ export const TEMPLATE_PHOTO_GRID_V2 = {
 3. {{grid_pose}}，鏡頭參數為 {{lens_param}}，捕捉細膩的情感表達；
 4. {{grid_pose}}，鏡頭參數為 {{lens_param}}，利用景深營造層次感；
 5. {{grid_pose}}，鏡頭參數為 {{lens_param}}，突出動態瞬間的生動性；
-6. {{grid_pose}}，鏡頭參數為 {{lens_param}}，通過前景虛化增強視覺焦點；
+6. {{grid_pose}}，鏡頭參數為 {{lens_param}}，透過前景虛化增強視覺焦點；
 7. {{grid_pose}}，鏡頭參數為 {{lens_param}}，展現優雅的姿態和放鬆的狀態；
 8. {{grid_pose}}，鏡頭參數為 {{lens_param}}，捕捉自然光線下的表情變化；
 9. {{grid_pose}}，鏡頭參數為 {{lens_param}}，微距特寫展現面部細節和質感。
@@ -238,13 +238,13 @@ Have {{character_companion}} stand next to the man, {{action_pose}}, while makin
 export const TEMPLATE_CLASSIC_SCENE = {
   cn: `### 經典場景微縮復刻
 
-展示一個精緻的、微縮 3D 卡通風格的{{classic_scene}}場景，採用清晰的 45° 俯視等軸側視角（Isometric view）。
+展示一個精緻的、微縮 3D 卡通風格的{{classic_scene}}場景，採用清晰的 45° 俯視等軸測視角（Isometric view）。
 
-**核心構圖：** 將主體最經典的形象突出地置於中心。自動搭配比例適宜的關鍵元素圖標、象徵性物品、迷人的小角色以及能詮釋主體故事的道具。整體佈局應當充滿趣味且緊湊聚集，宛如一套高端的玩具盲盒套裝。
+**核心構圖：** 將主體最經典的形象突出地置於中心。自動搭配比例適宜的關鍵元素圖示、象徵性物品、迷人的小角色以及能詮釋主體故事的道具。整體佈局應當充滿趣味且緊湊聚集，宛如一套高端的玩具盲盒套裝。
 
-**渲染與材質：** 採用{{render_style}}風格進行渲染。建模必須精細、圓潤流暢且質感豐富。使用逼真的 PBR 材質：混合用於有機形態的柔和啞光黏土、用於水體/玻璃元素的光澤樹脂，以及用於結構組件的光滑 PVC 材質。著重表現具有觸感、“看起來手感很好”的紋理細節。
+**渲染與材質：** 採用{{render_style}}風格進行渲染。建模必須精細、圓潤流暢且質感豐富。使用逼真的 PBR 材質：混合用於有機形態的柔和啞光黏土、用於水體/玻璃元素的光澤樹脂，以及用於結構組件的光滑 PVC 材質。著重表現具有觸感、「看起來手感很好」的紋理細節。
 
-**燈光與氛圍：** 採用柔和、逼真的攝影棚布光配合全局光照（Global Illumination）。利用柔和的陰影營造出溫暖、舒適且充滿魔力的氛圍。
+**燈光與氛圍：** 採用柔和、逼真的攝影棚布光配合全域光照（Global Illumination）。利用柔和的陰影營造出溫暖、舒適且充滿魔力的氛圍。
 
 **佈局：** 保持乾淨、極簡的佈局，使用與主體配色相協調的純色背景。
 
@@ -266,22 +266,22 @@ Showcase an exquisite, miniature 3D cartoon-style {{classic_scene}} scene, using
 export const TEMPLATE_CORPORATE_GROWTH = {
   cn: `### 可視化企業成長之路
 
-**角色定義** 你是一位企業演變建築師 (Corporate Evolution Architect)。你的目標是創建一個超高密度、垂直堆疊的等距軸測（Isometric）3D 渲染可視化圖像，展示 {{company}} 公司的技術和產品歷史。通過圖像展示一個企業的時間線：底部是簡陋的創業故事，通過產品迭代垂直向上升起，直到現代或未來的巔峰。
+**角色定義** 你是一位企業演變建築師 (Corporate Evolution Architect)。你的目標是創建一個超高密度、垂直堆疊的等距軸測（Isometric）3D 渲染可視化圖像，展示 {{company}} 公司的技術和產品歷史。透過圖像展示一個企業的時間線：底部是簡陋的創業故事，透過產品迭代垂直向上升起，直到現代或未來的巔峰。
 
 **核心能力 | 關鍵視覺策略（rameless Tech-Lapse）：**
 - **根除容器：** 嚴禁使用底板、邊框或橫截面視圖。底部邊緣是創業基地（車庫/實驗室/小辦公室），無限延伸。
-- **垂直時間線：** “之字形上升（Zig-Zag Ascent）”穿越創新歷程。  
+- **垂直時間線：** 「之字形上升（Zig-Zag Ascent）」穿越創新歷程。  
   - 底部（前景）：創業階段歲月 + 第一個原型機  
-  - 中部（上升中）：快速增長 / 全球擴張 / 標誌性的中期產品  
+  - 中部（上升中）：快速成長 / 全球擴張 / 標誌性的中期產品  
   - 頂部（背景）：當前總部 / 生態系統 / 未來研發
-- **集成 3D 標題：** 企業 Logo 必須渲染為巨大的、電影般的 3D 字體，矗立在前景，使用公司標誌性字體/材質。
+- **整合 3D 標題：** 企業 Logo 必須渲染為巨大的、電影般的 3D 字體，矗立在前景，使用公司標誌性字體/材質。
 
 **檢索與梳理：**
 - 提取企業歷史的幾個階段。
-- 列出定義每個時代的“經典產品”。
+- 列出定義每個時代的「經典產品」。
 - 勞動力演變：可視化員工與設備的變化。
 
-**構圖與光影：** 無框架、無邊界、無橫截面。垂直之字形時間線，將產品代際從底部的創業階段堆疊到未來的頂部。燈光從近現代的暖光（創業初期）過渡到乾淨的白/藍 LED 光（現代科技）。環境與公司經典產品隨高度演變。公司的多款經典產品以“巨物化”呈現。  
+**構圖與光影：** 無框架、無邊界、無橫截面。垂直之字形時間線，將產品代際從底部的創業階段堆疊到未來的頂部。燈光從近現代的暖光（創業初期）過渡到乾淨的白/藍 LED 光（現代科技）。環境與公司經典產品隨高度演變。公司的多款經典產品以「巨物化」呈現。  
 移軸攝影（Tilt-shift）與 {{render_style}}，畫幅 {{ratio}}。`,
   en: `### Visualized Corporate Growth Path
 **Role Definition**
@@ -306,28 +306,28 @@ Tilt-shift photography with {{render_style}}, aspect ratio {{ratio}}.`
 };
 
 export const TEMPLATE_DETECTIVE_SOCIAL = {
-  cn: `發揮你的創意幫我一起腦洞，假設{{character_groups}}使用{{social_media}}，包括回覆評論點讚，設計一些有趣、有反差的人物使用社交媒體互動朋友圈的場景，結合一些符合人物的大事件，有趣有梗有反差，製作一張{{social_media}}的截圖，使用中文，{{ratio}}。`,
+  cn: `發揮你的創意幫我一起腦洞，假設{{character_groups}}使用{{social_media}}，包括回覆評論點讚，設計一些有趣、有反差的人物使用社群媒體互動動態牆的場景，結合一些符合人物的大事件，有趣有梗有反差，製作一張{{social_media}}的截圖，使用中文，{{ratio}}。`,
   en: `Use your creativity to brainstorm with me. Imagine {{character_groups}} using {{social_media}}, including replying, commenting, and liking. Design some fun, high-contrast scenarios of characters interacting on social media feeds, combining big events that fit the characters with humor, memes, and contrast. Create a screenshot of {{social_media}}, in English, with aspect ratio {{ratio}}.`
 };
 
 export const TEMPLATE_MAGAZINE_COVER = {
-  cn: `### PROJECT GOAL | 項目目標
+  cn: `### PROJECT GOAL | 專案目標
 生成一張 9:16 旅遊雜誌封面級照片，以我上傳的真人照片為基準，實現 100% 五官還原，呈現專業、精緻、具有真實雜誌質感的封面畫面。
 
 ### SUBJECT | 人物設定
-根據我上傳人物的五官特徵進行完整還原；人物置身於 {{travel_location}}，請根據這個地理位置給人物穿著符合當地此刻的實時天氣、溫度與季節服裝邏輯；整體風格自然、優雅、有現場氛圍。
+根據我上傳人物的五官特徵進行完整還原；人物置身於 {{travel_location}}，請根據這個地理位置給人物穿著符合當地此刻的即時天氣、溫度與季節服裝邏輯；整體風格自然、優雅、有現場氛圍。
 
 ### POSE & EXPRESSION | 姿態與表情
 人物以雜誌封面標準姿態入鏡，略帶從容質感；面部表情自然放鬆但具吸引力；
-身體姿勢根據場景與天氣自由適配，呈現"在當地旅行中的真實狀態"。
+身體姿勢根據場景與天氣自由適配，呈現「在當地旅行中的真實狀態」。
 
 ### ENVIRONMENT | 場景要求
-背景呈現用戶輸入的地名代表性視覺線索，請根據用戶輸入的地理位置呈現符合當地此刻的實時天氣、溫度與季節場景邏輯；保持高級寫實風格，不誇張、不超現實；
+背景呈現使用者輸入的地名代表性視覺線索，請根據使用者輸入的地理位置呈現符合當地此刻的即時天氣、溫度與季節場景邏輯；保持高級寫實風格，不誇張、不超現實；
 光線以真實自然光為主，具有現場環境的時間感。
 
 ### CAMERA & AESTHETICS | 拍攝規格
 畫幅比例: {{ratio}}
-構圖: 充分利用豎幅空間，打造"封面級"視覺中心；鏡頭語言: 專業攝影棚級別的清晰度與景深；膚質感可見毛孔與自然紋理（非磨皮）；整體氛圍具有高級旅行雜誌的真實感與美感。
+構圖: 充分利用豎幅空間，打造「封面級」視覺中心；鏡頭語言: 專業攝影棚級別的清晰度與景深；膚質感可見毛孔與自然紋理（非磨皮）；整體氛圍具有高級旅行雜誌的真實感與美感。
 
 ### MAGAZINE DESIGN | 封面設計
 版面風格現代、乾淨、具有國際旅行雜誌氛圍；
@@ -369,7 +369,7 @@ export const TEMPLATE_MANGA_TO_REALITY = {
 
 ### MANGA DETAILS | 漫畫細節
 - **風格：** 超現實風格的黑白四格漫畫
-- **技法：** 正宗日式排版，網點紙效果，粗黑墨線，線條清晰利落
+- **技法：** 正宗日式排版，網點紙效果，粗黑墨線，線條清晰俐落
 - **內容：** 同一個人的漫畫版本被困在漫畫書裡面
 - **對比：** 單色漫畫世界與鮮豔現實世界的強烈視覺對比
 
@@ -494,23 +494,23 @@ The background is a hazy rainy scene.
 export const TEMPLATE_ART_GROWTH = {
   cn: `### 可視化藝術成長之路
 
-**角色定義** 你是一位歷史演變建築師 (History Evolution Architect)。你的目標是創建一個超高密度、垂直堆疊的等距軸測（Isometric）3D 展廳渲染可視化圖像，展示 {{art_type}} 的發展歷史。通過展廳來展示一個里程發展的時間線：底部是簡陋的發展初期，通過歷史更迭迭代垂直向上升起，直到現代或未來的巔峰。
+**角色定義** 你是一位歷史演變建築師 (History Evolution Architect)。你的目標是創建一個超高密度、垂直堆疊的等距軸測（Isometric）3D 展廳渲染可視化圖像，展示 {{art_type}} 的發展歷史。透過展廳來展示一個里程發展的時間線：底部是簡陋的發展初期，透過歷史更迭迭代垂直向上升起，直到現代或未來的巔峰。
 
 **核心能力 | 關鍵視覺策略（rameless Tech-Lapse）：**
-- **展廳模擬：** 使用一個多層的藝術展廳承載所要表達的事物發展，層級代表時間維度的發展，每層可能存在不同的“房間”用於展示同一時代不同風格的作品
+- **展廳模擬：** 使用一個多層的藝術展廳承載所要表達的事物發展，層級代表時間維度的發展，每層可能存在不同的「房間」用於展示同一時代不同風格的作品
 - **根除容器：** 嚴禁使用底板、邊框或橫截面視圖。底部邊緣是歷史起源（原始社會或古代社會）
-- **垂直時間線：** “之字形上升（Zig-Zag Ascent）”穿越創新歷程。  
+- **垂直時間線：** 「之字形上升（Zig-Zag Ascent）」穿越創新歷程。  
   - 底部（前景）：起源與原型  
   - 中部（上升中）：古代到現代的輝煌發展  
   - 頂部（背景）：當前的發展狀態與未來的可能性
-- **集成 3D 標題：** 明確的與主題相符合的標題
+- **整合 3D 標題：** 明確的與主題相符合的標題
 
 **檢索與梳理：**
 - 提取重要發展歷史中的的幾個階段。
-- 列出定義每個時代的“經典”。
+- 列出定義每個時代的「經典」。
 - 工具與媒介的變化
 
-**構圖與光影：** 等距視角的展廳視角。垂直之字形時間線，將事物發展從底部的創業階段堆疊到未來的頂部，環境與劃時代的經典作品隨高度演變。多款經典產品以“巨物化”呈現。  
+**構圖與光影：** 等距視角的展廳視角。垂直之字形時間線，將事物發展從底部的創業階段堆疊到未來的頂部，環境與劃時代的經典作品隨高度演變。多款經典產品以「巨物化」呈現。  
 移軸攝影（Tilt-shift）與 {{render_style}}，畫幅 {{ratio}}。`,
   en: `### Visualized Artistic Growth Path
 **Role Definition**
@@ -567,6 +567,149 @@ Outside the window, a real {{character_name}} is curiously looking inside at the
 {{ratio}}`
 };
 
+export const TEMPLATE_JAPANESE_PRODUCT_POSTER = {
+  cn: `### 日式產品海報（16:9橫構圖）
+
+高級日式產品海報，16:9橫構圖格式，編輯級設計展示{{fruit_1}}汁皮膚包裝概念，具有精緻的視覺敘事：
+
+**左側（畫布40%）：**
+- **主角產品：** 一個大型{{fruit_1}}汁皮膚包裝垂直展示，採用戲劇性柔和燈光，展現超寫實的{{fruit_1}}果皮紋理包裹矩形容器，符合{{fruit_1}}特徵質感的皮膚紋理，覆蓋整個表面，具有該水果特有的自然質感、顏色和細節變化，看起來完全像真正的{{fruit_1}}果皮拉伸覆蓋在包裝上
+- **下方：** 一個橫切的新鮮{{fruit_1}}，展示符合{{fruit_1}}特徵的果肉質感，展現其獨特的內部結構和顏色
+- **日式排版垂直對齊：** "{{fruit_1}}スキン"（{{fruit_1}}皮膚）採用優雅的細體哥德字體
+- **副標題：** "果汁皮膚 / {{fruit_1}}"採用精緻風格
+- **小字設計理念文本（日文）**
+
+**中央（畫布30%）：**
+- **大量白色負空間（間 - Ma）**
+- **極簡幾何元素：** 精緻的細線
+- **浮動文字：** "自然な素材"（天然材料）
+- **極簡品牌標識**
+- **背景中非常微妙的{{fruit_1}}特徵紋理圖案（低不透明度）**
+
+**右側（畫布30%）：**
+- **兩個{{fruit_1}}汁皮膚包裝以不同角度和高度藝術性排列**
+- **一個完整的新鮮{{fruit_1}}，帶有符合該水果特徵的自然皮膚質感**
+- **排版：** "Natural Packaging / 自然な包装"
+- **標語：** "The skin is the package / 皮膚が包装である"
+- **細節標註指向符合水果特徵的皮膚紋理細節**
+
+**設計原則：** 充足的留白，不對稱平衡，侘寂美學，無印良品/則武編輯級極簡主義
+**色彩調色板：** 符合{{fruit_1}}特徵的色調，純白背景，果肉的特徵顏色作為點綴
+**攝影：** 柔和擴散的影棚燈光，超清晰的微距細節展現符合水果特徵的紋理，照片級真實渲染
+**關鍵：** {{fruit_1}}皮膚包裝必須看起來極其真實——實際的有機紋理，完全符合該水果的自然特徵，包括其特有的質感、顏色和細節，絕非塑料
+
+16:9寬螢幕，高端日式產品海報，畫廊級品質`,
+  en: `### Premium Japanese-style Product Poster (16:9 Landscape)
+
+Premium Japanese-style product poster in 16:9 landscape format, editorial design showcasing {{fruit_1}} juice skin packaging concept with sophisticated visual storytelling:
+
+**LEFT SIDE (40% of canvas):**
+- **Hero product:** One large {{fruit_1}} juice skin package displayed vertically with dramatic soft lighting, showing ultra-realistic {{fruit_1}} peel texture wrapped around rectangular container, skin texture that matches the characteristic features of {{fruit_1}}, covering entire surface, with natural texture, color and detail variations specific to this fruit, looks exactly like real {{fruit_1}} skin stretched over package
+- **Below:** One cross-sectioned fresh {{fruit_1}} showing flesh texture that matches the characteristic features of {{fruit_1}}, displaying its unique internal structure and color
+- **Japanese typography vertically aligned:** "{{fruit_1}}スキン" ({{fruit_1}} Skin) in elegant thin gothic font
+- **Subtitle:** "果汁皮肤 / {{fruit_1}}" in refined style
+- **Small design philosophy text in Japanese**
+
+**CENTER (30% of canvas):**
+- **Generous white negative space (Ma - 間)**
+- **Minimal geometric elements:** delicate thin lines
+- **Floating text:** "自然な素材" (natural materials)
+- **Subtle minimalist brand mark**
+- **Very subtle {{fruit_1}} characteristic texture pattern in background (low opacity)**
+
+**RIGHT SIDE (30% of canvas):**
+- **Two {{fruit_1}} juice skin packages arranged artistically at different angles and heights**
+- **One whole fresh {{fruit_1}} with natural skin texture that matches the characteristic features of this fruit**
+- **Typography:** "Natural Packaging / 自然な包装"
+- **Tagline:** "The skin is the package / 皮膚が包装である"
+- **Detail callouts pointing to skin texture details that match the fruit's characteristics**
+
+**DESIGN PRINCIPLES:** Abundant white space, asymmetrical balance, Wabi-sabi aesthetic, Muji/Noritake editorial minimalism
+**COLOR PALETTE:** tones that match {{fruit_1}} characteristics, pure white background, characteristic flesh color as accent
+**PHOTOGRAPHY:** Soft diffused studio lighting, ultra-sharp macro details showing texture that matches the fruit's characteristics, photorealistic rendering
+**CRITICAL:** The {{fruit_1}} skin packaging must look incredibly realistic - actual organic texture that fully matches the natural characteristics of this fruit, including its unique texture, color and details, NOT plastic
+
+16:9 widescreen, high-end Japanese product poster, gallery quality`
+};
+
+export const TEMPLATE_LUXURY_EDITORIAL = {
+  cn: `### 高級時裝編輯部人像
+
+使用上傳的參考圖作為同一位{{subject}}。嚴格保持身份：相同的面部結構、膚色、髮型。無性別轉換。
+
+**姿態與構圖：**
+四分之三背影。背部部分朝向鏡頭，軀幹稍微向左傾斜。頭部輕輕向右轉動，露出乾淨的側臉。眼睛輕輕向下看或閉上。肩膀放鬆。露背是主要的視覺焦點。
+
+**服裝：**
+{{clothing}}。深V露背，帶有優雅的垂墜感。啞光面料，無光澤，無閃粉，無婚禮元素。
+
+**配飾：**
+精美小巧的耳環。{{jewelry_style}}，帶有微妙的寶石細節，沿著脊柱垂下。
+
+**花卉：**
+{{flower_type}}，拿在右肩上方。花朵部分重疊肩膀，營造出層次感的時尚遮擋效果。
+
+**攝影：**
+平視或略高於肩膀高度。85mm人像鏡頭質感。淺景深，壓縮透視。無廣角畸變。
+
+**燈光：**
+{{lighting}}。主光來自左上方，照亮側臉和上背部。微妙的補光展現皮膚紋理。非常柔和的輪廓光勾勒出裙子和花朵。低對比度，平滑的色調過渡。
+
+**背景：**
+{{background_style}}。無環境，無道具，無紋理。
+
+**風格：**
+奢侈時尚雜誌美學。優雅、克制、永恆。自然精緻的皮膚紋理，不過度磨皮。`,
+  en: `### High-Fashion Luxury Editorial Portrait
+
+Use the uploaded reference image as the same {{subject}}. Preserve identity strictly: same face structure, skin tone, hairstyle. No gender swap.
+
+**POSE & COMPOSITION:**
+Three-quarter back view. Back partially facing camera, torso angled slightly left. Head gently turned to the right, revealing a clean side profile. Eyes softly lowered or closed. Shoulders relaxed. The open back is the main visual focus.
+
+**WARDROBE:**
+{{clothing}}. Deep V open back with elegant drape. Matte fabric, no shine, no glitter, no bridal elements.
+
+**ACCESSORIES:**
+Small delicate earrings. {{jewelry_style}} with subtle gemstone details resting along the spine.
+
+**FLOWERS:**
+{{flower_type}} held over the right shoulder. The flowers partially overlap the shoulder, creating layered fashion blocking.
+
+**CAMERA:**
+Eye-level to slightly above shoulder height. 85mm portrait lens look. Shallow depth of field, compressed perspective. No wide-angle distortion.
+
+**LIGHTING:**
+{{lighting}}. Key light from upper-left, illuminating side face and upper back. Subtle fill light for skin texture. Very soft rim light outlining dress and flowers. Low contrast, smooth tonal transitions.
+
+**BACKGROUND:**
+{{background_style}}. No environment, no props, no texture.
+
+**STYLE:**
+Luxury fashion magazine aesthetic. Elegant, restrained, timeless. Natural refined skin texture, not over-smoothed.`
+};
+
+export const TEMPLATE_STREET_DIALOGUE = {
+  cn: `### 街頭的自我「對話」
+
+1. **核心主題與風格：** 一張具有深刻故事性和極佳攝影質感的街頭攝影人像作品，捕捉「自我對話」的哲學瞬間。採用自然光影，呈現電影級敘事感和動態模糊藝術效果。
+2. **場景與背景地點：** {{building_cluster}}。時間與光影：{{lighting_atmosphere}}。光線聚焦於中心人物。氛圍：忙碌、疏離，充滿動態與靜謐的對比。
+3. **核心人物描述位置與狀態：** 位於畫面正中央，靜止站立，神態若有所思或平靜凝視鏡頭，與周圍環境的匆忙形成鮮明對比。穿著：{{clothing}}，面部與上傳圖片高度一致
+4. **周邊人群描述（關鍵敘事元素）身份與穿著：** 所有路過行人都是核心人物的「不同自我」，身著代表其社會角色的服裝：周圍人物面部需要保持與上傳圖片的高度一致，眾多不同穿著的「我」在核心人物周圍穿梭，周邊人物快速移動，產生了較大的動態模糊，周邊人物全部有移動產生的殘影，極大的動態模糊和視覺殘留，與核心人物的靜態形成了鮮明對比，周邊人物與核心人物都是一樣的面孔和人物，不要添加其他無關人物，周邊人物需要與核心人物有準確的前後關係。
+5. **攝影技術與構圖鏡頭與景深：** {{lens_param}}，偏向與人物特寫，較大的景深。核心人物面部和上身清晰銳利，前景和背景（包括動態模糊的人群和街頭環境）適度虛化。半身像為主構圖：中心構圖，核心人物類似半身像，處畫面中心較大位置。相機視角稍稍高出人物並微微向下俯視，只有核心人物抬頭看向鏡頭，{{ratio}}。
+6. **畫質與色調：** 高解析度，細膩的膠片質感，輕微顆粒感。色調以暖橙色和深藍色陰影為主，色彩鮮明但有層次。
+7. **情緒與故事：** 傳遞出孤獨、內省、身份多元性與內心對話的複雜情感。畫面在動態中凝結了一個安靜的哲學瞬間`,
+  en: `### Street Self-Dialogue
+
+1. **CORE THEME & STYLE:** A deeply storytelling street photography portrait capturing a philosophical moment of "self-dialogue." Uses natural lighting, cinematic narrative feel, and motion blur artistic effects.
+2. **SCENE & BACKGROUND:** {{building_cluster}}. Time & Lighting: {{lighting_atmosphere}}. Light focused on the central character. Atmosphere: Busy, alienated, filled with contrast between dynamics and tranquility.
+3. **CENTRAL CHARACTER:** Located in the center, standing still, with a pensive expression or calmly staring at the camera, forming a sharp contrast with the rush of the surrounding environment. Wardrobe: {{clothing}}, facial features highly consistent with the uploaded image.
+4. **SURROUNDING CROWD (KEY NARRATIVE ELEMENT):** All passing pedestrians are "different selves" of the central character, wearing clothes representing their social roles: surrounding characters' faces must remain highly consistent with the uploaded image. Numerous "selves" in different outfits weave around the central character. Surrounding characters move rapidly, creating significant motion blur and visual trailing, contrasting with the static nature of the central character. Surrounding characters and the central character share the same face and identity—do not add irrelevant people. Surrounding characters need accurate spatial relationships (front/back) with the central character.
+5. **PHOTOGRAPHY & COMPOSITION:** {{lens_param}}, leaning towards character close-up with larger depth of field. Central character's face and upper body are sharp and clear, while foreground and background (including motion-blurred crowd and street environment) are moderately blurred. Composition: Central composition, half-body style, occupying a large portion of the center. Camera angle slightly above the character looking slightly downward, only the central character looks up at the camera, {{ratio}}.
+6. **QUALITY & TONE:** High resolution, delicate film texture, slight grain. Tones dominated by warm oranges and deep blue shadows, vivid but layered colors.
+7. **EMOTION & STORY:** Conveys feelings of loneliness, introspection, identity multiplicity, and the complexity of inner dialogue. The image freezes a quiet philosophical moment within dynamics.`
+};
+
 /**
  * 可用的模板標籤
  */
@@ -583,12 +726,12 @@ export const TEMPLATE_TAGS = [
 ];
 
 /**
- * 系統內置模板列表
+ * 系統內建模板列表
  * * 如何添加新模板：
  * 1. 在上方定義模板內容常量 (可選，但推薦)
- * 2. 在數組中添加一個新的配置對象
+ * 2. 在陣列中添加一個新的配置物件
  * 3. 確保 id 唯一
- * 4. imageUrl 可以是外部連結，也可以是項目內的 import 資源
+ * 4. imageUrl 可以是外部連結，也可以是專案內的 import 資源
  * 5. tags 可以從 TEMPLATE_TAGS 中選擇
  */
 export const INITIAL_TEMPLATES_CONFIG = [
@@ -634,7 +777,7 @@ export const INITIAL_TEMPLATES_CONFIG = [
   },
   {
     id: "tpl_fashion",
-    name: { cn: "時尚情緒板插畫", en: "Fashion Moodboard" },
+    name: { cn: "時尚情緒板插画", en: "Fashion Moodboard" },
     content: TEMPLATE_FASHION_MOODBOARD,
     imageUrl: "https://s3.bmp.ovh/imgs/2025/12/08/4d9f92ccb4113fdd.jpg",
     author: "官方",
@@ -659,7 +802,7 @@ export const INITIAL_TEMPLATES_CONFIG = [
     imageUrl: "https://s3.bmp.ovh/imgs/2025/12/10/1eac697f5a438542.jpg",
     author: "官方",
     selections: {
-      "classic_scene": { cn: "千與千尋", en: "Spirited Away" },
+      "classic_scene": { cn: "神隱少女", en: "Spirited Away" },
       "render_style": { cn: "Octane Render 和 Cinema 4D", en: "Octane Render and Cinema 4D" },
       "position": { cn: "頂部中央", en: "Top Center" }
     },
@@ -692,7 +835,7 @@ export const INITIAL_TEMPLATES_CONFIG = [
       "character_originality": { cn: "使用附圖中的人物，確保結果與人物一致性", en: "Use character in attachment, ensure consistency" },
       "school_uniform": { cn: "灰色開衫和格子裙校服", en: "Grey cardigan and plaid skirt uniform" },
       "urban_location": { cn: "澀谷十字路口", en: "Shibuya Crossing" },
-      "dynamic_action": { cn: "一隻手夸張地伸向鏡頭前景", en: "One hand exaggeratedly reaching towards the foreground" },
+      "dynamic_action": { cn: "一隻手誇張地伸向鏡頭前景", en: "One hand exaggeratedly reaching towards the foreground" },
       "fingernail_detail": { cn: "手指甲清晰可見", en: "Fingernails clearly visible" },
       "building_cluster": { cn: "扭曲的澀谷109大樓和其他建築林立", en: "Distorted Shibuya 109 building and other forest of buildings" },
       "crowd_traffic": { cn: "擠滿行人和車輛", en: "Bustling traffic" },
@@ -702,17 +845,17 @@ export const INITIAL_TEMPLATES_CONFIG = [
       "lighting_atmosphere": { cn: "陽光明媚", en: "Sunny" },
       "shadow_contrast": { cn: "光影對比強烈", en: "Strong light-shadow contrast" },
       "ratio": { cn: "圓形畫幅", en: "Circular Aspect Ratio" },
-      "render_style": { cn: "高質量的 2D 插畫風格", en: "High-quality 2D illustration style" }
+      "render_style": { cn: "高畫質的 2D 插畫風格", en: "High-quality 2D illustration style" }
     },
     tags: ["攝影", "創意", "人物"],
     language: ["cn", "en"]
   },
   {
     id: "tpl_detective_social",
-    name: { cn: "歷史名人的朋友圈", en: "Historical Figure's Moments" },
+    name: { cn: "歷史名人的動態牆", en: "Historical Figure's Moments" },
     content: TEMPLATE_DETECTIVE_SOCIAL,
     imageUrl: "https://s3.bmp.ovh/imgs/2025/12/14/6ff892060de55ea9.jpg",
-    author: "@dotey(寶玉)",
+    author: "@dotey(宝玉)",
     selections: {
       "character_groups": { cn: "中國古代開國皇帝", en: "Ancient Chinese Founding Emperors" },
       "social_media": { cn: "微信朋友圈", en: "WeChat Moments" },
@@ -836,6 +979,51 @@ export const INITIAL_TEMPLATES_CONFIG = [
       "ratio": { cn: "4:3橫構圖", en: "4:3 Horizontal" }
     },
     tags: ["攝影", "創意", "卡通"],
+    language: ["cn", "en"]
+  },
+  {
+    id: "tpl_japanese_product_poster",
+    name: { cn: "日式產品海報", en: "Japanese Product Poster" },
+    content: TEMPLATE_JAPANESE_PRODUCT_POSTER,
+    imageUrl: "https://s3.bmp.ovh/imgs/2025/12/25/a574127d24ac34e3.png",
+    author: "@berryxia（Berryxia.AI）",
+    selections: {
+      "fruit_1-0": { cn: "檸檬", en: "Lemon" },
+      "ratio": { cn: "16:9橫構圖", en: "16:9 Horizontal" }
+    },
+    tags: ["產品", "創意", "攝影"],
+    language: ["cn", "en"]
+  },
+  {
+    id: "tpl_luxury_editorial",
+    name: { cn: "高級時裝露背人像", en: "Luxury Editorial Portrait" },
+    content: TEMPLATE_LUXURY_EDITORIAL,
+    imageUrl: "https://s3.bmp.ovh/imgs/2025/12/25/bb94a5f7b87af2ee.jpg",
+    author: "@sidona",
+    selections: {
+      "subject": { cn: "女性", en: "Woman" },
+      "clothing": { cn: "極簡黑色高級訂製禮服", en: "Minimalist black couture gown" },
+      "background_style": { cn: "乾淨的純白影棚背景", en: "Clean pure white studio background" },
+      "lighting": { cn: "柔和的編輯級影棚布光", en: "Soft editorial studio lighting" },
+      "ratio": { cn: "3:4豎構圖", en: "3:4 Vertical" }
+    },
+    tags: ["人物", "攝影", "創意"],
+    language: ["cn", "en"]
+  },
+  {
+    id: "tpl_street_self_dialogue",
+    name: { cn: "街頭的自我對話", en: "Street Self-Dialogue" },
+    content: TEMPLATE_STREET_DIALOGUE,
+    imageUrl: "https://s3.bmp.ovh/imgs/2025/12/25/fd3cbc98f5afa970.png",
+    author: "@MarioTan",
+    selections: {
+      "building_cluster": { cn: "紐約摩天大樓群", en: "New York skyscraper cluster" },
+      "lighting_atmosphere": { cn: "夕陽餘暉", en: "Sunset afterglow" },
+      "clothing": { cn: "黑色修身西裝", en: "Black slim-fit suit" },
+      "lens_param": { cn: "85mm, f/1.8", en: "85mm, f/1.8" },
+      "ratio": { cn: "3:4豎構圖", en: "3:4 Vertical" }
+    },
+    tags: ["人物", "攝影", "創意"],
     language: ["cn", "en"]
   }
 ];
