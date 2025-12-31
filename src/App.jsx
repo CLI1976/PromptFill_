@@ -267,7 +267,7 @@ const ImagePreviewModal = React.memo(({ zoomedImage, template, language, t, TAG_
                   {/* Hint for non-expanded state */}
                   {!isTextExpanded && (
                     <div className="px-6 pb-24 text-[10px] font-medium text-gray-400 animate-pulse text-center flex-shrink-0">
-                      点击卡片或向上滑动查看详细内容
+                      點擊卡片或向上滑動查看詳細內容
                     </div>
                   )}
               </div>
@@ -451,7 +451,7 @@ const AnimatedSlogan = React.memo(({ isActive, language }) => {
 
   return (
     <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-2 gap-y-3 text-base md:text-lg lg:text-xl text-gray-700 font-medium font-['MiSans',system-ui,sans-serif] px-2 leading-relaxed min-h-[60px]">
-      <span className="whitespace-nowrap">"{language === 'en' ? 'Show a detailed, miniature' : '展示一个精致的、微缩'}</span>
+      <span className="whitespace-nowrap">"{language === 'en' ? 'Show a detailed, miniature' : '展示一個精致的、微縮'}</span>
       <div className="inline-flex items-center justify-center min-w-[120px]">
         <span 
           key={`style-${styleIndex}-${language}`}
@@ -481,7 +481,7 @@ const AnimatedSlogan = React.memo(({ isActive, language }) => {
           {currentScenes[sceneIndex]}
         </span>
             </div>
-      <span className="whitespace-nowrap">{language === 'en' ? 'scene"' : '场景"'}</span>
+      <span className="whitespace-nowrap">{language === 'en' ? 'scene"' : '場景"'}</span>
     </div>
   );
 });
@@ -561,13 +561,13 @@ const App = () => {
 
   // Global State with Persistence
   // bump version keys to强制刷新新增词库与默认值
-  const [banks, setBanks] = useStickyState(INITIAL_BANKS, "app_banks_v9");
-  const [defaults, setDefaults] = useStickyState(INITIAL_DEFAULTS, "app_defaults_v9");
+  const [banks, setBanks] = useStickyState(INITIAL_BANKS, "app_banks_v10");
+  const [defaults, setDefaults] = useStickyState(INITIAL_DEFAULTS, "app_defaults_v10");
   const [language, setLanguage] = useStickyState("cn", "app_language_v1"); // 全局UI语言
   const [templateLanguage, setTemplateLanguage] = useStickyState("cn", "app_template_language_v1"); // 模板内容语言
   const [categories, setCategories] = useStickyState(INITIAL_CATEGORIES, "app_categories_v1"); // New state
   
-  const [templates, setTemplates] = useStickyState(INITIAL_TEMPLATES_CONFIG, "app_templates_v10");
+  const [templates, setTemplates] = useStickyState(INITIAL_TEMPLATES_CONFIG, "app_templates_v11");
   const [activeTemplateId, setActiveTemplateId] = useStickyState("tpl_default", "app_active_template_id_v4");
   
   const [lastAppliedDataVersion, setLastAppliedDataVersion] = useStickyState("", "app_data_version_v1");
@@ -680,7 +680,7 @@ const App = () => {
           const currentTemplateExists = templates.some(t => t.id === activeTemplateId);
           if (!currentTemplateExists || !activeTemplateId) {
               // 如果当前选中的模板不存在或为空，选择第一个模板
-              console.log('[自动选择] 选择第一个模板:', templates[0].id);
+              console.log('[自動選擇] 選擇第一個模板:', templates[0].id);
               setActiveTemplateId(templates[0].id);
           }
       }
@@ -695,7 +695,7 @@ const App = () => {
 
       // 编辑 / 词库 Tab：确保有选中的模板
       if ((mobileTab === 'editor' || mobileTab === 'banks') && templates.length > 0 && !activeTemplateId) {
-          console.log('[tab切换] 自动选择第一个模板:', templates[0].id);
+          console.log('[tab切换] 自動選擇第一個模板:', templates[0].id);
           setActiveTemplateId(templates[0].id);
       }
   }, [mobileTab, templates, activeTemplateId]);
@@ -725,7 +725,7 @@ const App = () => {
                       }
                   }
               } catch (error) {
-                  console.error('恢复文件夹句柄失败:', error);
+                  console.error('恢覆文件夾句柄失敗:', error);
               }
           }
       };
